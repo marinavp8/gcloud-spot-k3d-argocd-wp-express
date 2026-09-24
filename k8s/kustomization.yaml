@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: express
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+images:
+  - name: ghcr.io/marinavp8/gcloud-spot-k3d-argocd-wp-express
+    newTag: latest   # lo actualiza el workflow de GitHub Actions con el SHA del commit
