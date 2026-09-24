@@ -24,6 +24,7 @@ ArgoCD (Application "express", auto-sync) ◀────────┘ ──�
 │   └── kustomization.yaml    # tag de la imagen (lo actualiza el workflow)
 ├── argocd/application.yaml.tpl
 ├── deploy.sh                 # registra la Application en el ArgoCD de la VM
+├── build-on-vm.sh            # alternativa a Actions: build en la VM + k3d image import
 └── .github/workflows/build.yml
 ```
 
@@ -44,7 +45,14 @@ cd app && npm install && npm start          # http://localhost:3000
 
 # Desplegar una nueva versión: basta con hacer push de cambios en app/
 git push                                     # Actions → nueva imagen → commit del tag → ArgoCD sincroniza
+
+# Sin GitHub Actions: build en la VM + k3d image import + commit del tag
+./build-on-vm.sh
 ```
+
+> Hoy Actions está bloqueado en `marinavp8` por facturación, así que el despliegue actual
+> se hizo con `build-on-vm.sh`. Por eso el Deployment usa `imagePullPolicy: IfNotPresent`:
+> la imagen importada en k3d no existe en GHCR. Ojo: si se recrea el clúster hay que volver a ejecutarlo.
 
 Comprobar en la VM:
 

@@ -20,6 +20,7 @@ spec:
       containers:
         - name: express
           image: ghcr.io/marinavp8/gcloud-spot-k3d-argocd-wp-express   # el tag lo fija kustomization.yaml
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 3000
