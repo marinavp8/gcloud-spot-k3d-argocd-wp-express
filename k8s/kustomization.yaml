@@ -7,4 +7,4 @@ resources:
   - ingress.yaml
 images:
   - name: ghcr.io/marinavp8/gcloud-spot-k3d-argocd-wp-express
-    newTag: latest   # lo actualiza el workflow de GitHub Actions (o build-on-vm.sh) con el SHA del commit
+    newTag: 502e706   # lo actualiza el workflow de GitHub Actions (o build-on-vm.sh) con el SHA del commit
